@@ -1,10 +1,30 @@
-<h3>Register</h3>
+{% extends 'base/main.html'%}
+{% block content%}
+<div class="header-bar">
+    <h2>Register</h2>
+</div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Register">
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <label>{{form.username.label}}</label>
+        {{form.username}}
+        <ul>
+            <li><p>Your password can’t be too similar to your other personal information.</p> </li>
+            <li><p>Your password must contain at least 8 characters.</p></li>
+            <li><p>Your password can’t be a commonly used password.</p></li>
+            <li><p>Your password can’t be entirely numeric.</p></li>
+        </ul>
+        <label>{{form.password1.label}}</label>
+        {{form.password1}}
+        <label>{{form.password2.label}}</label>
+        {{form.password2}}
+        <input style="margin-top: 15px" class="button" type="submit" value="Register">
 
-</form>
+    </form>
 
-<p>Already have an account ? <a href="{% url 'login' %}">Login</a></p>
+    <p>Already have an account ? <a href="{% url 'login' %}">Login</a></p>
+
+</div>
+
+{% endblock content %}
